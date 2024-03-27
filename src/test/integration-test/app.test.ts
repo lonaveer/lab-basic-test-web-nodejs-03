@@ -10,90 +10,97 @@ describe('Product Management', () => {
     // const newProduct = { name: 'Product 1', description: 'Product 1 description', price: 100 };
 
     // // เพิ่มข้อมูลผลิตภัณฑ์ใหม่
-    // const xxxxx = await xxxxx(xxxxx)
-    //   .xxxxxx('xxxxx')
-    //   .xxxxx(xxxxx);
+    // const response = await xxxxx(xxxxx)
+    //   .post('/products')
+    //   .send(newProduct);
 
     // // ตรวจสอบผลลัพธ์การเพิ่มข้อมูลผลิตภัณฑ์ใหม่ : โดยตรวจสอบจาก response.status เป็น 201 หรือไม่
-    // xxxxx(xxxxx).xxxxx(xxxxx);
+    // expect(xxxxx).xxxxx(201);
 
     // // ตรวจสอบผลลัพธ์ : ใน response.body ที่ได้มานั้น มี property 'id' หรือไม่
-    // xxxxx(xxxxx).xxxxx('xxxxx');
+    // expect(xxxxx).toHaveProperty('xxxxx');
 
     // // บันทึก ID ผลิตภัณฑ์เพื่อใช้ในการทดสอบต่อไป
-    // xxxxx = xxxxx.xxxxx.xxxxx;
+    // productId = response.body.id;
   });
 
-  it('should return a product', async () => {
+  it('should get a product', async () => {
     // // นำ ID ที่ได้บันทึกไว้ (จากการทดสอบ 'should add a new product') มาใช้ในการค้นหาผลิตภัณฑ์
-    // const xxxxxx = await xxxxx(xxxxx)
-    //   .xxxxx(`xxxxx`);
+    // const response = await xxxxx(xxxxx)
+    //   .get(`/products/${productId}`);
 
     // // ตรวจสอบผลลัพธ์การค้นหาข้อมูลผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 200 หรือไม่
-    // xxxxx(xxxxx).xxxxx(xxxxx);
+    // expect(xxxxx).xxxxx(200);
 
     // // ตรวจสอบผลลัพธ์ : ใน response.body ที่ได้มานั้น มี property 'id' ตรงกับ productId ที่ใช้ในการค้นหาผลิตภัณฑ์ หรือไม่
-    // xxxxx(xxxxx).xxxxx('xxxxx', xxxxx);
+    // expect(xxxxx).toHaveProperty('id', productId);
   });
 
   it('should update the product', async () => {
     // // กำหนดข้อมูลผลิตภัณฑ์ที่จะอัปเดต
-    // xxxxx
+    // const updatedProduct = { name: 'Updated Product', description: 'Updated description', price: 150 }
 
     // // อัปเดตข้อมูลผลิตภัณฑ์
-    // xxxxx
+    // const response = await xxxxx(xxxxx)
+      // .put(`/products/${productId}`)
+      // .send(updatedProduct);
 
     // // ตรวจสอบผลลัพธ์การอัปเดตข้อมูลผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 200 หรือไม่
-    // xxxxx
+    // expect(xxxxx).xxxxx(xxxxx);
   });
 
   it('should delete the product', async () => {
     // // ลบข้อมูลผลิตภัณฑ์
-    // xxxxx
+    // const response = await xxxxx(xxxxx)
+      // .delete(`/products/${productId}`);
 
     // // ตรวจสอบผลลัพธ์การลบข้อมูลผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 204 หรือไม่
-    // xxxxx
+    // expect(xxxxx).xxxxx(xxxxx);
   });
 });
 
 describe('GET /products/:id with non-existing id', () => {
-    it('should return 404 for a non-existing product', async () => {
-        // // ค้นหาผลิตภัณฑ์ที่ไม่มีอยู่ในระบบ เช่น 9999
-        // const xxxxx = await xxxxx(xxxxxx).xxxxxx('xxxxx');
+  it('should return 404 for a non-existing product', async () => {
+    // // ค้นหาผลิตภัณฑ์ที่ไม่มีอยู่ในระบบ เช่น 9999
+    // const response = await xxxxx(xxxxx)
+    //   .get('/products/9999');
 
-        // // ตรวจสอบผลลัพธ์การค้นหาผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 404 หรือไม่
-        // xxxxxx(xxxxx).xxxxx(xxxxx);
+    // // ตรวจสอบผลลัพธ์การค้นหาผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 404 หรือไม่
+    // expect(xxxxx).xxxxx(xxxxx);
 
-        // // ตรวจสอบผลลัพธ์ : ใน response.text ที่ได้มานั้น ต้องเป็น 'Product not found'
-        // xxxxx(xxxxxx).xxxxx('xxxxx');
-    });
+    // // ตรวจสอบผลลัพธ์ : ใน response.text ที่ได้มานั้น ต้องเป็น 'Product not found'
+    // expect(xxxxx).xxxxx(xxxxxx);
+  });
 });
 
 describe('PUT /products/:id with non-existing id', () => {
-    it('should return 404 when trying to update a non-existing product', async () => {
-        // // กำหนดข้อมูลผลิตภัณฑ์ที่จะอัปเดต
-        // xxxxx
+  it('should return 404 when trying to update a non-existing product', async () => {
+    // // กำหนดข้อมูลผลิตภัณฑ์ที่จะอัปเดต
+    // const productUpdate = { name: 'New Name', description: 'New Description', price: 100 };
 
-        // // อัปเดตผลิตภัณฑ์ที่ไม่มีอยู่ในระบบ
-        // xxxxx
+    // // อัปเดตผลิตภัณฑ์ที่ไม่มีอยู่ในระบบ
+    // const response = await xxxxx(xxxxx)
+      // .put('/products/9999')
+      // .send(productUpdate);
 
-        // // ตรวจสอบผลลัพธ์การอัปเดตผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 404 หรือไม่
-        // xxxxx
+    // // ตรวจสอบผลลัพธ์การอัปเดตผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 404 หรือไม่
+    // expect(xxxxx).xxxxx(xxxxx);
 
-        // // ตรวจสอบผลลัพธ์ : ใน response.text ที่ได้มานั้น ต้องเป็น 'Product not found'
-        // xxxxx
-    });
+    // // ตรวจสอบผลลัพธ์ : ใน response.text ที่ได้มานั้น ต้องเป็น 'Product not found'
+    // expect(xxxxx).xxxxxx(xxxxx);
+  });
 });
 
 describe('DELETE /products/:id with non-existing id', () => {
-    it('should return 404 when trying to delete a non-existing product', async () => {
-        // // ลบผลิตภัณฑ์ที่ไม่มีอยู่ในระบบ เช่น 9999
-        // xxxxx
+  it('should return 404 when trying to delete a non-existing product', async () => {
+    // // ลบผลิตภัณฑ์ที่ไม่มีอยู่ในระบบ เช่น 9999
+    // const response = await xxxxx(xxxxx)
+    //   .delete('/products/9999');
 
-        // // ตรวจสอบผลลัพธ์การลบผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 404 หรือไม่
-        // xxxxx
+    // // ตรวจสอบผลลัพธ์การลบผลิตภัณฑ์ : โดยตรวจสอบจาก response.status เป็น 404 หรือไม่
+    // expect(xxxxx).xxxxx(xxxxx);
 
-        // // ตรวจสอบผลลัพธ์ : ใน response.text ที่ได้มานั้น ต้องเป็น 'Product not found'
-        // xxxxx
-    });
+    // // ตรวจสอบผลลัพธ์ : ใน response.text ที่ได้มานั้น ต้องเป็น 'Product not found'
+    // expect(xxxxx).xxxxx(xxxxx);
+  });
 });
