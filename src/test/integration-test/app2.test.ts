@@ -14,7 +14,7 @@ describe('User Management API', () => {
             .send({ username: 'testuser', password: 'testpass' });
 
         // ตรวจสอบการลงทะเบียนสำเร็จ
-        expect(registerRes.statusCode).toEqual(201);
+        expect(registerRes.statusCode).toBe(201);
 
         // เข้าสู่ระบบเพื่อรับ accessToken
         const loginRes = await request(app)
@@ -29,8 +29,8 @@ describe('User Management API', () => {
         const res = await request(app)
             .post('/register')
             .send({ username: 'newuser', password: 'newpass' });
-        expect(res.statusCode).toEqual(201);
-        expect(res.text).toEqual('User registered successfully');
+        expect(res.statusCode).toBe(201);
+        expect(res.text).toBe('User registered successfully');
     });
 
     // ทดสอบการเข้าสู่ระบบและรับ token
@@ -38,7 +38,7 @@ describe('User Management API', () => {
         const res = await request(app)
             .post('/login')
             .send({ username: 'testuser', password: 'testpass' });
-        expect(res.statusCode).toEqual(200);
+        expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty('accessToken');
     });
 
@@ -50,8 +50,8 @@ describe('User Management API', () => {
                 username: 'nonExistingUser', // ใช้ชื่อผู้ใช้ที่ไม่มีอยู่จริง
                 password: 'anyPassword',
             });
-        expect(res.statusCode).toEqual(401);
-        expect(res.text).toEqual('Cannot find user or password is incorrect');
+        expect(res.statusCode).toBe(401);
+        expect(res.text).toBe('Cannot find user or password is incorrect');
     });
 
     // ทดสอบการเข้าสู่ระบบด้วยรหัสผ่านที่ไม่ถูกต้อง
@@ -63,8 +63,8 @@ describe('User Management API', () => {
                 username: 'testuser', // ใช้ชื่อผู้ใช้ที่มีอยู่จริง
                 password: 'incorrectPassword', // ใช้รหัสผ่านที่ไม่ถูกต้อง
             });
-        expect(res.statusCode).toEqual(401);
-        expect(res.text).toEqual('Cannot find user or password is incorrect');
+        expect(res.statusCode).toBe(401);
+        expect(res.text).toBe('Cannot find user or password is incorrect');
     });
 
     // ทดสอบการดูข้อมูลโปรไฟล์
@@ -72,7 +72,7 @@ describe('User Management API', () => {
         const res = await request(app)
             .get('/myProfile')
             .set('Authorization', `Bearer ${accessToken}`);
-        expect(res.statusCode).toEqual(200);
+        expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty('username', 'testuser');
     });
 
@@ -82,8 +82,8 @@ describe('User Management API', () => {
         const res = await request(app)
             .get('/myProfile')
             .set('Authorization', `Bearer ${accessToken}`);
-        expect(res.statusCode).toEqual(404);
-        expect(res.text).toEqual('User not found');
+        expect(res.statusCode).toBe(404);
+        expect(res.text).toBe('User not found');
     });
 
     // ทดสอบการแก้ไขข้อมูลโปรไฟล์
@@ -92,7 +92,7 @@ describe('User Management API', () => {
             .put('/myProfile')
             .send({ username: 'updatedTestuser' })
             .set('Authorization', `Bearer ${accessToken}`);
-        expect(res.statusCode).toEqual(200);
+        expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty('username', 'updatedTestuser');
     });
 
@@ -103,8 +103,8 @@ describe('User Management API', () => {
             .put('/myProfile')
             .send({ username: 'updatedTestuser' })
             .set('Authorization', `Bearer ${accessToken}`);
-        expect(res.statusCode).toEqual(404);
-        expect(res.text).toEqual('User not found');
+        expect(res.statusCode).toBe(404);
+        expect(res.text).toBe('User not found');
     });
 
     // ทดสอบการลบโปรไฟล์ผู้ใช้
@@ -112,8 +112,8 @@ describe('User Management API', () => {
         const res = await request(app)
             .delete('/myProfile')
             .set('Authorization', `Bearer ${accessToken}`);
-        expect(res.statusCode).toEqual(200);
-        expect(res.text).toEqual('User deleted successfully');
+        expect(res.statusCode).toBe(200);
+        expect(res.text).toBe('User deleted successfully');
     });
 
     // ทดสอบการลบโปรไฟล์ผู้ใช้ ที่ไม่มีอยู่จริง
@@ -122,21 +122,21 @@ describe('User Management API', () => {
         const res = await request(app)
             .delete('/myProfile')
             .set('Authorization', `Bearer ${accessToken}`);
-        expect(res.statusCode).toEqual(404);
-        expect(res.text).toEqual('User not found');
+        expect(res.statusCode).toBe(404);
+        expect(res.text).toBe('User not found');
     });
 });
 
 describe('Token Authentication', () => {
     it('should return 401 if token is missing', async () => {
         const res = await request(app).get('/myProfile');
-        expect(res.statusCode).toEqual(401);
+        expect(res.statusCode).toBe(401);
     });
 
     it('should return 403 if token is invalid', async () => {
         const res = await request(app)
             .get('/myProfile')
             .set('Authorization', 'Bearer invalidToken'); // ส่ง token ที่ไม่ถูกต้อง
-        expect(res.statusCode).toEqual(403);
+        expect(res.statusCode).toBe(403);
     });
 });
